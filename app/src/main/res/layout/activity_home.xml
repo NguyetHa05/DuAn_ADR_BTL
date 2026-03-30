@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,97 +9,131 @@
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="80dp"
+        android:layout_height="40dp"
         android:background="@drawable/bg_header"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Nút Menu -->
+
+    <!-- Nút Favorite -->
+
+    <!-- Nút Thông báo -->
+
+
     <ImageView
         android:id="@+id/btnMenu"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:src="@android:drawable/ic_menu_sort_by_size"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/view"
+        app:layout_constraintVertical_bias="0.888"
         app:tint="#000000" />
 
-    <EditText
-        android:id="@+id/edtSearch"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:layout_width="256dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/bg_search"
-        android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawablePadding="8dp"
-        android:elevation="4dp"
-        android:hint="Tìm kiếm"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:textColor="#000"
-        android:textColorHint="#888"
-        app:layout_constraintStart_toEndOf="@id/btnMenu"
+        app:layout_constraintBottom_toBottomOf="@id/btnMenu"
         app:layout_constraintEnd_toStartOf="@id/btnFavorite"
+        app:layout_constraintStart_toEndOf="@id/btnMenu"
+        app:layout_constraintTop_toTopOf="@id/btnMenu">
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_search"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:elevation="4dp"
+            android:hint="Tìm kiếm"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="#000"
+            android:textColorHint="#888"
+            android:textSize="13sp" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/btnFavorite"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@android:drawable/btn_star_big_off"
+        app:layout_constraintEnd_toStartOf="@+id/btnNotify"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toEndOf="@+id/btnMenu"
+        app:layout_constraintTop_toTopOf="@+id/btnMenu"
+        app:tint="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/btnNotify"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@android:drawable/ic_dialog_info"
+        app:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnMenu"
         app:layout_constraintBottom_toBottomOf="@id/btnMenu"/>
 
-    <!-- Nút Favorite -->
-    <ImageView
-        android:id="@+id/btnFavorite"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
-        android:src="@android:drawable/btn_star_big_off"
-        app:layout_constraintStart_toEndOf="@id/edtSearch"
-        app:layout_constraintEnd_toStartOf="@id/btnNotify"
-        app:layout_constraintTop_toTopOf="@id/btnMenu"
-        app:layout_constraintBottom_toBottomOf="@id/btnMenu"
-        app:tint="#FFFFFF"/>
-
-    <!-- Nút Thông báo -->
-    <ImageView
-        android:id="@+id/btnNotify"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="16dp"
-        android:src="@android:drawable/ic_dialog_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btnMenu"
-        app:layout_constraintBottom_toBottomOf="@id/btnMenu"
-        app:tint="#FFFFFF"/>
-
-    <!-- RecyclerView danh sách category ngang -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategories"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollMain"
         android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:clipToPadding="false"
-        android:scrollbars="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/view"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 🔹 DANH MỤC NGANG -->
+
+            <!-- 🔹 TAB -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategory"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:padding="2dp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="19dp"
+                android:contentDescription="Danh mục sản phẩm" />
+
+
+            <!-- 🔹 DANH SÁCH SẢN PHẨM -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvProduct"
+                android:layout_width="match_parent"
+                android:layout_height="504dp"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:orientation="horizontal"
         android:background="#FFFFFF"
-        android:gravity="center"
         android:elevation="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <!-- Nút Trang chủ -->
         <LinearLayout
@@ -107,23 +141,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_home"
-                app:tint="#000000"/>
+                app:tint="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Trang chủ"
-                android:textSize="12sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Nút Quản lý tin -->
@@ -132,45 +166,45 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_manage"
-                app:tint="#000000"/>
+                app:tint="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quản lý tin"
-                android:textSize="12sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Nút Đăng tin nổi tròn ở giữa -->
         <FrameLayout
             android:id="@+id/btnPost"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_circle"
             android:clickable="true"
-            android:focusable="true"
+            android:contentDescription="Đăng tin"
             android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/bottomNavigation"
-            android:contentDescription="Đăng tin">
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@id/bottomNavigation">
 
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_gravity="center"
+                android:contentDescription="Đăng tin"
                 android:src="@drawable/outline_add_24"
-                app:tint="#FFFFFF"
-                android:contentDescription="Đăng tin" />
+                app:tint="#FFFFFF" />
         </FrameLayout>
 
         <!-- Nút Liên hệ -->
@@ -179,23 +213,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_contact"
-                app:tint="#000000"/>
+                app:tint="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Liên hệ"
-                android:textSize="12sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Nút Tài khoản -->
@@ -204,23 +238,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_account"
-                app:tint="#000000"/>
+                app:tint="#000000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tài khoản"
-                android:textSize="12sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="12sp" />
         </LinearLayout>
 
     </LinearLayout>
